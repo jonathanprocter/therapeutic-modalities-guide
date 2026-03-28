@@ -1,0 +1,518 @@
+[
+  {
+    "slug": "act",
+    "title": "Acceptance and Commitment Therapy (ACT)",
+    "subtitle": "Focus on psychological flexibility: where avoidance and fusion narrow values-based action.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "Identify the experiential avoidance pattern: What is the client avoiding? What cognitive fusion is maintaining this? What values are being neglected?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "adlerian",
+    "title": "Adlerian Therapy",
+    "subtitle": "Focus on lifestyle, belonging, and discouragement shaping goals of behavior.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "What is the client's lifestyle pattern? How do early recollections, birth order, and social interest shape their current difficulties?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "cbt",
+    "title": "Cognitive Behavioral Therapy (CBT)",
+    "subtitle": "Focus on thoughts, emotions, behaviors, and core beliefs driving the cycle.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "Identify the core belief \u2192 intermediate belief \u2192 automatic thought chain. What cognitive distortions maintain the problem? What behavioral patterns reinforce it?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "emdr",
+    "title": "Eye Movement Desensitization and Reprocessing (EMDR)",
+    "subtitle": "Focus on unprocessed memories, present triggers, and negative cognitions.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "What is the target memory? What negative cognition is associated? What is the desired positive cognition? Rate SUD and VOC."
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "ifs",
+    "title": "Internal Family Systems (IFS)",
+    "subtitle": "Focus on parts roles, burdens, and building Self-leadership.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "Which parts are active? Identify protectors (managers/firefighters) and exiles. What is the Self's relationship to these parts?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "mi",
+    "title": "Motivational Interviewing (MI)",
+    "subtitle": "Focus on ambivalence, change talk, readiness, and confidence.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "Where is the client on the stages of change? What sustain talk vs. change talk do you hear? What discrepancy exists between values and behavior?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "narrative",
+    "title": "Narrative Therapy",
+    "subtitle": "Focus on dominant stories, language, and preferred identity.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "What is the dominant problem-saturated story? What unique outcomes or exceptions exist? What alternative story is emerging?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "sfbt",
+    "title": "Solution-Focused Brief Therapy (SFBT)",
+    "subtitle": "Focus on preferred future, exceptions, and strengths.",
+    "fields": [
+      {
+        "name": "Client + Context",
+        "prompt": "Age, pronouns, presenting issue, referral source, relevant background (cultural, developmental, relational)."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, functional impact. What brought the client in now?"
+      },
+      {
+        "name": "Lens Hypothesis (What is maintaining the problem?)",
+        "prompt": "What does the client's preferred future look like? What exceptions to the problem already exist? On a scale of 1\u201310, where are they now?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes, patterns, or behaviors will treatment target? Be concrete and measurable."
+      },
+      {
+        "name": "Protective Factors + Strengths",
+        "prompt": "Existing resources: social support, coping skills, motivation, cultural strengths, past successes."
+      },
+      {
+        "name": "Intervention Plan (Next 2-3 sessions)",
+        "prompt": ""
+      },
+      {
+        "name": "Homework / Between-Session Practice",
+        "prompt": "Specific tasks the client will practice between sessions. Include frequency and tracking method."
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know treatment is working? Include both subjective markers and objective measures (e.g., PHQ-9 scores)."
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, contraindications, barriers to treatment, cultural considerations, ethical issues."
+      }
+    ]
+  },
+  {
+    "slug": "dbt",
+    "title": "DBT Case Conceptualization Worksheet",
+    "subtitle": "Dialectical Behavior Therapy \u2014 One-page formulation for supervision and case conferences",
+    "fields": [
+      {
+        "name": "Client & Context",
+        "prompt": "Name/ID, date, session number, and relevant contextual information."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, and functional impact."
+      },
+      {
+        "name": "Lens Hypothesis",
+        "prompt": "How does this modality explain the presenting problem? What maintains it?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes or patterns need to shift for improvement?"
+      },
+      {
+        "name": "Protective Factors & Strengths",
+        "prompt": "What resources, supports, and resilience factors does the client bring?"
+      },
+      {
+        "name": "Intervention Plan",
+        "prompt": "Which specific techniques will you use and in what sequence?"
+      },
+      {
+        "name": "Homework / Between-Session Tasks",
+        "prompt": "What practice or reflection will the client do between sessions?"
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know the intervention is working? What will change?"
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, cultural factors, potential barriers to treatment."
+      }
+    ]
+  },
+  {
+    "slug": "eft",
+    "title": "EFT Case Conceptualization Worksheet",
+    "subtitle": "Emotionally Focused Therapy \u2014 One-page formulation for supervision and case conferences",
+    "fields": [
+      {
+        "name": "Client & Context",
+        "prompt": "Name/ID, date, session number, and relevant contextual information."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, and functional impact."
+      },
+      {
+        "name": "Lens Hypothesis",
+        "prompt": "How does this modality explain the presenting problem? What maintains it?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes or patterns need to shift for improvement?"
+      },
+      {
+        "name": "Protective Factors & Strengths",
+        "prompt": "What resources, supports, and resilience factors does the client bring?"
+      },
+      {
+        "name": "Intervention Plan",
+        "prompt": "Which specific techniques will you use and in what sequence?"
+      },
+      {
+        "name": "Homework / Between-Session Tasks",
+        "prompt": "What practice or reflection will the client do between sessions?"
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know the intervention is working? What will change?"
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, cultural factors, potential barriers to treatment."
+      }
+    ]
+  },
+  {
+    "slug": "psychodynamic",
+    "title": "Psychodynamic Case Conceptualization Worksheet",
+    "subtitle": "Psychodynamic Therapy \u2014 One-page formulation for supervision and case conferences",
+    "fields": [
+      {
+        "name": "Client & Context",
+        "prompt": "Name/ID, date, session number, and relevant contextual information."
+      },
+      {
+        "name": "Presenting Concerns",
+        "prompt": "Primary symptoms, duration, severity, and functional impact."
+      },
+      {
+        "name": "Lens Hypothesis",
+        "prompt": "How does this modality explain the presenting problem? What maintains it?"
+      },
+      {
+        "name": "Change Targets",
+        "prompt": "What specific processes or patterns need to shift for improvement?"
+      },
+      {
+        "name": "Protective Factors & Strengths",
+        "prompt": "What resources, supports, and resilience factors does the client bring?"
+      },
+      {
+        "name": "Intervention Plan",
+        "prompt": "Which specific techniques will you use and in what sequence?"
+      },
+      {
+        "name": "Homework / Between-Session Tasks",
+        "prompt": "What practice or reflection will the client do between sessions?"
+      },
+      {
+        "name": "Progress Indicators",
+        "prompt": "How will you know the intervention is working? What will change?"
+      },
+      {
+        "name": "Risks / Considerations",
+        "prompt": "Safety concerns, cultural factors, potential barriers to treatment."
+      }
+    ]
+  },
+  {
+    "slug": "safety-plan",
+    "title": "Safety Plan",
+    "subtitle": "Crisis Response & Means Safety Planning",
+    "fields": [
+      {
+        "name": "Warning Signs",
+        "prompt": "Thoughts, images, moods, situations, or behaviors that indicate a crisis may be developing."
+      },
+      {
+        "name": "Internal Coping Strategies",
+        "prompt": "Things I can do on my own to take my mind off problems without contacting another person (e.g., relaxation, exercise, hobbies)."
+      },
+      {
+        "name": "People & Social Settings That Provide Distraction",
+        "prompt": "People I can contact or places I can go to distract myself (name, phone number)."
+      },
+      {
+        "name": "People I Can Ask for Help",
+        "prompt": "Family members or friends I can reach out to when in crisis (name, phone number)."
+      },
+      {
+        "name": "Professional Supports",
+        "prompt": "Clinician name and phone, local urgent care, crisis team contact information."
+      },
+      {
+        "name": "Emergency Services",
+        "prompt": "988 Suicide & Crisis Lifeline, 911, local emergency room address and phone, Crisis Text Line (text HOME to 741741)."
+      },
+      {
+        "name": "Means Safety Plan",
+        "prompt": "Steps to reduce access to lethal means. Who will secure firearms, medications, or other means? Where will they be stored?"
+      },
+      {
+        "name": "Reasons for Living",
+        "prompt": "The most important things to me that are worth living for (people, pets, goals, beliefs, responsibilities)."
+      },
+      {
+        "name": "My Environment Safe \u2014 Next 24 Hours",
+        "prompt": "Specific plan for the next 24 hours: where I'll be, who I'll be with, what I'll do, when I'll check in."
+      }
+    ]
+  }
+]
