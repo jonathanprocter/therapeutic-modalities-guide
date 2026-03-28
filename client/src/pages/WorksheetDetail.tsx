@@ -1,10 +1,11 @@
 /*
- * WorksheetDetail — Individual printable worksheet
- * Renders a one-page case conceptualization form with scaffold prompts
+ * WorksheetDetail — Individual fillable worksheet
+ * Renders a case conceptualization form with editable textareas and localStorage persistence
  */
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
-import { Printer, ArrowLeft } from "lucide-react";
+import { Printer, ArrowLeft, Trash2 } from "lucide-react";
 import worksheetsRaw from "@/data/worksheets_data.json";
 
 interface WorksheetField {
@@ -21,10 +22,47 @@ interface WorksheetData {
 
 const worksheets: WorksheetData[] = worksheetsRaw as WorksheetData[];
 
+function storageKey(slug: string) {
+  return `worksheet-${slug}`;
+}
+
 export default function WorksheetDetail() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug || "";
   const worksheet = worksheets.find(w => w.slug === slug);
+
+  const [values, setValues] = useState<Record<string, string>>(() => {
+    try {
+      const saved = localStorage.getItem(storageKey(slug));
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Auto-save on change (debounced)
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      localStorage.setItem(storageKey(slug), JSON.stringify(values));
+    }, 400);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [values, slug]);
+
+  const handleChange = useCallback((fieldIdx: number, value: string) => {
+    setValues(prev => ({ ...prev, [fieldIdx]: value }));
+  }, []);
+
+  const handleClearAll = useCallback(() => {
+    if (window.confirm("Clear all responses on this worksheet?")) {
+      setValues({});
+      localStorage.removeItem(storageKey(slug));
+    }
+  }, [slug]);
 
   if (!worksheet) {
     return (
@@ -40,6 +78,7 @@ export default function WorksheetDetail() {
   };
 
   const isSafetyPlan = slug === "safety-plan";
+  const hasContent = Object.values(values).some(v => v.trim().length > 0);
 
   return (
     <div className="container py-8 md:py-12 max-w-3xl mx-auto">
@@ -58,14 +97,26 @@ export default function WorksheetDetail() {
             <ArrowLeft size={16} />
             All Worksheets
           </Link>
-          <button
-            onClick={handlePrint}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-border bg-card hover:bg-muted transition-colors"
-            style={{ fontFamily: 'var(--font-body)' }}
-          >
-            <Printer size={14} />
-            Print / Export PDF
-          </button>
+          <div className="flex items-center gap-2">
+            {hasContent && (
+              <button
+                onClick={handleClearAll}
+                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md border border-border bg-card hover:bg-destructive/10 hover:text-destructive transition-colors"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                <Trash2 size={14} />
+                Clear All
+              </button>
+            )}
+            <button
+              onClick={handlePrint}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-border bg-card hover:bg-muted transition-colors"
+              style={{ fontFamily: 'var(--font-body)' }}
+            >
+              <Printer size={14} />
+              Print / Export PDF
+            </button>
+          </div>
         </div>
 
         {/* Worksheet */}
@@ -92,13 +143,25 @@ export default function WorksheetDetail() {
                 <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1" style={{ fontFamily: 'var(--font-body)' }}>
                   Client
                 </label>
-                <div className="h-6 border-b border-border" />
+                <input
+                  type="text"
+                  value={values["client-name"] || ""}
+                  onChange={e => setValues(prev => ({ ...prev, "client-name": e.target.value }))}
+                  className="w-full border-b border-border bg-transparent text-sm text-foreground focus:outline-none focus:border-primary h-7 print:border-0"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                />
               </div>
               <div>
                 <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1" style={{ fontFamily: 'var(--font-body)' }}>
                   Date
                 </label>
-                <div className="h-6 border-b border-border" />
+                <input
+                  type="text"
+                  value={values["client-date"] || ""}
+                  onChange={e => setValues(prev => ({ ...prev, "client-date": e.target.value }))}
+                  className="w-full border-b border-border bg-transparent text-sm text-foreground focus:outline-none focus:border-primary h-7 print:border-0"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                />
               </div>
             </div>
           )}
@@ -110,19 +173,37 @@ export default function WorksheetDetail() {
                 <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1" style={{ fontFamily: 'var(--font-body)' }}>
                   Client
                 </label>
-                <div className="h-6 border-b border-border" />
+                <input
+                  type="text"
+                  value={values["sp-client"] || ""}
+                  onChange={e => setValues(prev => ({ ...prev, "sp-client": e.target.value }))}
+                  className="w-full border-b border-border bg-transparent text-sm text-foreground focus:outline-none focus:border-primary h-7 print:border-0"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                />
               </div>
               <div>
                 <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1" style={{ fontFamily: 'var(--font-body)' }}>
                   Date Created
                 </label>
-                <div className="h-6 border-b border-border" />
+                <input
+                  type="text"
+                  value={values["sp-created"] || ""}
+                  onChange={e => setValues(prev => ({ ...prev, "sp-created": e.target.value }))}
+                  className="w-full border-b border-border bg-transparent text-sm text-foreground focus:outline-none focus:border-primary h-7 print:border-0"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                />
               </div>
               <div>
                 <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1" style={{ fontFamily: 'var(--font-body)' }}>
                   Date Reviewed
                 </label>
-                <div className="h-6 border-b border-border" />
+                <input
+                  type="text"
+                  value={values["sp-reviewed"] || ""}
+                  onChange={e => setValues(prev => ({ ...prev, "sp-reviewed": e.target.value }))}
+                  className="w-full border-b border-border bg-transparent text-sm text-foreground focus:outline-none focus:border-primary h-7 print:border-0"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                />
               </div>
             </div>
           )}
@@ -137,6 +218,7 @@ export default function WorksheetDetail() {
                 field.name.toLowerCase().includes("notes") ||
                 field.name.toLowerCase().includes("context")
               );
+              const rows = isSafetyPlan ? 4 : (isWide ? 4 : 3);
               return (
                 <div
                   key={i}
@@ -151,11 +233,14 @@ export default function WorksheetDetail() {
                       {field.prompt}
                     </p>
                   )}
-                  <div className="space-y-3">
-                    {Array.from({ length: isSafetyPlan ? 4 : (isWide ? 4 : 3) }).map((_, j) => (
-                      <div key={j} className="h-px bg-border/70" />
-                    ))}
-                  </div>
+                  <textarea
+                    value={values[i] || ""}
+                    onChange={e => handleChange(i, e.target.value)}
+                    rows={rows}
+                    placeholder="Type here..."
+                    className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring resize-y print:bg-transparent print:border-0 print:ring-0 print:p-0 print:resize-none"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                  />
                 </div>
               );
             })}

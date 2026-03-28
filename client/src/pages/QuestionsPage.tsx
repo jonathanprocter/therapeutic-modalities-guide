@@ -4,8 +4,9 @@
  */
 import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, ChevronDown, ChevronUp, Copy, Shuffle, Check } from "lucide-react";
+import { Search, X, ChevronDown, ChevronUp, Copy, Shuffle, Check, Star } from "lucide-react";
 import { toast } from "sonner";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import questionsRaw from "@/data/questions_data.json";
 
 interface Question {
@@ -71,6 +72,26 @@ function CopyButton({ text }: { text: string }) {
         <Copy size={13} className="text-muted-foreground/60" />
       )}
     </button>
+  );
+}
+
+function QuestionRow({ q, idx }: { q: Question; idx: number }) {
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const starred = isFavorite("questions", q.text);
+  return (
+    <li className="group/q text-sm text-muted-foreground flex items-start gap-2 py-1 px-2 -mx-2 rounded hover:bg-muted/40 transition-colors">
+      <span className="text-xs text-muted-foreground/50 mt-0.5 shrink-0 w-5 text-right select-none">{idx + 1}.</span>
+      <span className="flex-1 min-w-0">{q.text}</span>
+      <button
+        onClick={() => toggleFavorite("questions", q.text)}
+        className="shrink-0 p-1 rounded hover:bg-muted transition-colors opacity-0 group-hover/q:opacity-100 focus:opacity-100"
+        aria-label={starred ? "Remove from favorites" : "Add to favorites"}
+        style={starred ? {} : undefined}
+      >
+        <Star size={13} fill={starred ? "#975F57" : "none"} color={starred ? "#975F57" : "currentColor"} className={starred ? "" : "text-muted-foreground/60"} />
+      </button>
+      <CopyButton text={q.text} />
+    </li>
   );
 }
 
@@ -166,11 +187,7 @@ function BankSection({ bank, searchQuery, themeFilter, forceOpen }: {
                   )}
                   <ol className="space-y-0.5" style={{ fontFamily: 'var(--font-body)' }}>
                     {group.questions.map((q, qi) => (
-                      <li key={qi} className="group/q text-sm text-muted-foreground flex items-start gap-2 py-1 px-2 -mx-2 rounded hover:bg-muted/40 transition-colors">
-                        <span className="text-xs text-muted-foreground/50 mt-0.5 shrink-0 w-5 text-right select-none">{qi + 1}.</span>
-                        <span className="flex-1 min-w-0">{q.text}</span>
-                        <CopyButton text={q.text} />
-                      </li>
+                      <QuestionRow key={qi} q={q} idx={qi} />
                     ))}
                   </ol>
                 </div>

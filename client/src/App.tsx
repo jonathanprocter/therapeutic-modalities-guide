@@ -4,7 +4,9 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
 import { Layout } from "./components/Layout";
+import { SessionCompanion } from "./components/SessionCompanion";
 import { lazy, Suspense, useEffect } from "react";
 
 // Lazy load pages for better performance
@@ -14,6 +16,9 @@ const ComparePage = lazy(() => import("./pages/ComparePage"));
 const QuestionsPage = lazy(() => import("./pages/QuestionsPage"));
 const WorksheetsPage = lazy(() => import("./pages/WorksheetsPage"));
 const WorksheetDetail = lazy(() => import("./pages/WorksheetDetail"));
+const FormulatePage = lazy(() => import("./pages/FormulatePage"));
+const ToolkitPage = lazy(() => import("./pages/ToolkitPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
 
 /* Skeleton loading state — replaces the old "Loading..." text */
 function PageSkeleton() {
@@ -43,6 +48,9 @@ const PAGE_TITLES: Record<string, string> = {
   "/compare": "Compare Lenses — Therapeutic Modalities Guide",
   "/questions": "Question Repository — Therapeutic Modalities Guide",
   "/worksheets": "Worksheets — Therapeutic Modalities Guide",
+  "/formulate": "AI Case Formulation — Therapeutic Modalities Guide",
+  "/toolkit": "My Toolkit — Therapeutic Modalities Guide",
+  "/about": "About — Therapeutic Modalities Guide",
 };
 
 const MODALITY_NAMES: Record<string, string> = {
@@ -85,6 +93,9 @@ function Router() {
         <Route path="/questions" component={QuestionsPage} />
         <Route path="/worksheets" component={WorksheetsPage} />
         <Route path="/worksheets/:slug" component={WorksheetDetail} />
+        <Route path="/formulate" component={FormulatePage} />
+        <Route path="/toolkit" component={ToolkitPage} />
+        <Route path="/about" component={AboutPage} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
@@ -96,13 +107,16 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light" switchable>
-        <TooltipProvider>
-          <Toaster />
-          <TitleManager />
-          <Layout>
-            <Router />
-          </Layout>
-        </TooltipProvider>
+        <FavoritesProvider>
+          <TooltipProvider>
+            <Toaster />
+            <TitleManager />
+            <Layout>
+              <Router />
+            </Layout>
+            <SessionCompanion />
+          </TooltipProvider>
+        </FavoritesProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

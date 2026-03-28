@@ -3,15 +3,38 @@
  * Editorial layout with hero CTA, case conceptualization toolkit, modality cards, features
  * Design: Warm earth-tone palette, Fraunces display + Source Sans 3 body
  */
+import { useState, useMemo, useCallback } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { MODALITY_LIST } from "@/data/modalities";
+import questionsRaw from "@/data/questions_data.json";
 import {
   BookOpen, MessageSquare, GitCompare, FileText,
-  Search, ClipboardCopy, Moon, Smartphone, ArrowRight, Shuffle
+  Search, ClipboardCopy, Moon, Smartphone, ArrowRight, Shuffle, Copy, Check
 } from "lucide-react";
+import { toast } from "sonner";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/114222369/Uuign85Z3jY6wv4ZNuBNcb/hero-bg-Zx5MqfV3NvqdADyNr2EDz9.webp";
+
+/* Build a flat list of all questions for QOTD */
+interface QBank { questions: { text: string }[]; title: string; }
+const allQs: { text: string; bank: string }[] = [];
+for (const bank of (questionsRaw as QBank[])) {
+  for (const q of bank.questions) {
+    allQs.push({ text: q.text, bank: bank.title });
+  }
+}
+
+/* Date-based deterministic seed for Question of the Day */
+function getDailyIndex(date: Date): number {
+  const day = Math.floor(date.getTime() / 86400000);
+  // Simple hash
+  let h = day;
+  h = ((h >> 16) ^ h) * 0x45d9f3b;
+  h = ((h >> 16) ^ h) * 0x45d9f3b;
+  h = (h >> 16) ^ h;
+  return Math.abs(h) % allQs.length;
+}
 
 /* Stagger-in animation */
 const stagger = {
@@ -39,6 +62,23 @@ const FEATURES = [
 ];
 
 export default function Home() {
+  const dailyIdx = useMemo(() => getDailyIndex(new Date()), []);
+  const [qotd, setQotd] = useState(allQs[dailyIdx]);
+  const [copied, setCopied] = useState(false);
+
+  const shuffleQuestion = useCallback(() => {
+    const idx = Math.floor(Math.random() * allQs.length);
+    setQotd(allQs[idx]);
+  }, []);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(qotd.text).then(() => {
+      setCopied(true);
+      toast.success("Copied!");
+      setTimeout(() => setCopied(false), 1500);
+    });
+  }, [qotd]);
+
   return (
     <div className="min-h-screen">
       {/* ─── Hero Section ─── */}
@@ -103,12 +143,59 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Question of the Day ─── */}
+      <section className="container py-8 md:py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="p-5 rounded-lg border-l-4 bg-card border border-border"
+          style={{ borderLeftColor: '#975F57' }}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-2">
+                <MessageSquare size={14} style={{ color: '#975F57' }} />
+                <span
+                  className="text-xs font-semibold uppercase tracking-wider"
+                  style={{ color: '#975F57', fontFamily: 'var(--font-body)' }}
+                >
+                  Question of the Day
+                </span>
+              </div>
+              <p className="text-sm md:text-base text-foreground leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
+                "{qotd.text}"
+              </p>
+              <p className="text-xs text-muted-foreground mt-2" style={{ fontFamily: 'var(--font-body)' }}>
+                From: {qotd.bank}
+              </p>
+            </div>
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                onClick={handleCopy}
+                className="p-1.5 rounded hover:bg-muted transition-colors"
+                aria-label="Copy question"
+              >
+                {copied ? <Check size={14} className="text-green-600" /> : <Copy size={14} className="text-muted-foreground" />}
+              </button>
+              <button
+                onClick={shuffleQuestion}
+                className="p-1.5 rounded hover:bg-muted transition-colors"
+                aria-label="Get another question"
+              >
+                <Shuffle size={14} className="text-muted-foreground" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* ─── Case Conceptualization Toolkit ─── */}
       <section className="container py-12 md:py-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           variants={stagger}
         >
           <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-foreground">
@@ -200,7 +287,7 @@ export default function Home() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0 }}
           variants={stagger}
         >
           <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-foreground mb-2">
@@ -281,7 +368,7 @@ export default function Home() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           variants={stagger}
         >
           <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-foreground mb-2">
@@ -321,7 +408,7 @@ export default function Home() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           variants={stagger}
         >
           <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-foreground mb-8">

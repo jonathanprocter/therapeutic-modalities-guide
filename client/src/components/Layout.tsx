@@ -8,7 +8,7 @@ import { Link, useLocation } from "wouter";
 import { useTheme } from "@/contexts/ThemeContext";
 import {
   Moon, Sun, Menu, X, Search, ChevronRight, Home,
-  BookOpen, MessageSquare, GitCompare, FileText
+  BookOpen, MessageSquare, GitCompare, FileText, Sparkles, Star, Info
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -27,6 +27,8 @@ const NAV_ITEMS = [
   { href: "/questions", label: "Questions", icon: MessageSquare },
   { href: "/compare", label: "Compare Lenses", icon: GitCompare },
   { href: "/worksheets", label: "Worksheets", icon: FileText },
+  { href: "/formulate", label: "AI Formulator", icon: Sparkles },
+  { href: "/toolkit", label: "My Toolkit", icon: Star },
 ];
 
 const MODALITY_NAMES: Record<string, string> = {
@@ -53,6 +55,12 @@ function getBreadcrumbs(path: string) {
     const slug = path.split("/")[2];
     const name = slug === "safety-plan" ? "Safety Plan" : (MODALITY_NAMES[slug] || slug);
     crumbs.push({ label: name, href: path });
+  } else if (path === "/formulate") {
+    crumbs.push({ label: "AI Formulator", href: "/formulate" });
+  } else if (path === "/toolkit") {
+    crumbs.push({ label: "My Toolkit", href: "/toolkit" });
+  } else if (path === "/about") {
+    crumbs.push({ label: "About", href: "/about" });
   }
   return crumbs;
 }
@@ -363,12 +371,15 @@ export function Layout({ children }: { children: ReactNode }) {
                 <Link href="/compare" className="block hover:text-primary transition-colors">Compare Lenses</Link>
                 <Link href="/questions" className="block hover:text-primary transition-colors">Question Repository</Link>
                 <Link href="/worksheets" className="block hover:text-primary transition-colors">Worksheets</Link>
+                <Link href="/formulate" className="block hover:text-primary transition-colors">AI Formulator</Link>
+                <Link href="/toolkit" className="block hover:text-primary transition-colors">My Toolkit</Link>
               </div>
             </div>
             <div>
               <div className="font-semibold text-foreground mb-2 text-[11px] uppercase tracking-wider">Quick Links</div>
               <div className="space-y-1.5">
                 <Link href="/worksheets/safety-plan" className="block hover:text-primary transition-colors">Safety Plan</Link>
+                <Link href="/about" className="block hover:text-primary transition-colors">About</Link>
                 <Link href="/" className="block hover:text-primary transition-colors">Home</Link>
               </div>
             </div>
